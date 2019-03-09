@@ -1,1 +1,3 @@
-export {default as Temperature} from "./Temperature";
+export * from './Temperature';
+export * from './TemperatureInNiceDiv';
+export * from './NiceDiv';

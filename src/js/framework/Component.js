@@ -5,13 +5,14 @@ export default class Component {
     this._render();
   }
   _render() {
-    this.host.innerHTML = "";
+    this.host.innerHTML = '';
     const content = this.render();
-
+    debugger;
     if (typeof content === 'string') {
       this.host.innerHTML = content;
     } else {
-      content.map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
+      content
+        .map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
         .forEach(htmlElement => {
           this.host.appendChild(htmlElement);
         });
@@ -37,6 +38,12 @@ export default class Component {
         if (typeof element.tag === 'function') {
           const container = document.createElement('div');
           new element.tag(container, element.props);
+          if (element.children) {
+            element.children.forEach(el => {
+              const htmlElement = this._vDomPrototypeElementToHtmlElement(el);
+              container.appendChild(htmlElement);
+            });
+          }
           return container;
         } else {
           // string

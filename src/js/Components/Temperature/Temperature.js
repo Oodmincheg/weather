@@ -1,5 +1,5 @@
-import Component from "../../framework/Component";
-export default class Temperature extends Component {
+import Component from '../../framework/Component';
+export class Temperature extends Component {
   constructor(host, props) {
     super(host, props);
   }
